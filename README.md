@@ -11,6 +11,7 @@ sample application to communicate with matter chip-tool
 - templates and static-: these two folder carries web ui assets
 ## building the snap
 currently this snap doesnt support crossbuild
+
 command to build the snap is-:
 ```
 snapcraft --destructive-mode --verbosity=verbose
