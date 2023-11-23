@@ -3,7 +3,7 @@ sample application to communicate with matter chip-tool
 in a nutshell this web application runs webUI for commisioning matter devices and once they are commissioned they can then be operated
 so to commission devices , device details need to be provided through devicelist.json file which need to be copied to ```$SNAP_DATA/mnt``` dir
 device operation sequences for demo purposes need to be provided thru opemodes.json file which is also need to be copied to ```$SNAP_DATA/mnt``` dir
-## resource file info
+## resource files info
 - firstapp.py-: commissioning application
 - pywrapper,sh-: calls firstapp.py
 - thirdapp.py-: device operation application
@@ -32,4 +32,4 @@ snapcraft --destructive-mode --verbosity=verbose
  ```
     snap set matter-hauto-demo-wweb debug=true
 ``` 
-- 
+ 
