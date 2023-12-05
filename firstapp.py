@@ -45,6 +45,7 @@ def PairCall():
     pairparams = DeviceList.GetDevicePairingParams(devicelist1, DeviceDataBase["devices"], deviceidx)
     snapvar = os.environ.get('SNAP')
     snapdatacomvar = os.environ.get('SNAP_DATA')
+    bleadapter = os.environ.get('BLE_ADAPTER')
     pathvar=snapvar
     pathvar+="/extra-bin/chip-tool.sh " + snapvar + "/extra-bin/chip-tool "
     pathvar+= "pairing" + " " + pairparams[1][0] + " " + pairparams[0] + " " 
@@ -64,6 +65,7 @@ def PairCall():
         print(tmpdict)
         pathvar+= tmpdict["thnwopsDataset"] + " " + tmpdict["QRCode"] + " "
         if tmpdict["productiondev"] == "1":
+            pathvar+= "--ble-adapter " + bleadapter + " " 
             pathvar+= "--paa-trust-store-path" + " " + "pemcerts" 
 		
     print(pathvar)

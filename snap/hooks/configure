@@ -3,6 +3,7 @@
 echo "configure hook is running"
 [ -n "$(snapctl get nwiface)" ] || snapctl set nwiface="eth0"
 [ -n "$(snapctl get debug)" ] || snapctl set debug="false"
+[ -n "$(snapctl get bleadapter)" ] || snapctl set bleadapter="0"
 
 snapctl restart ${SNAP_NAME}.devicepairing
 snapctl restart ${SNAP_NAME}.matterdemo
