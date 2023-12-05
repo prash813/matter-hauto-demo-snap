@@ -9,7 +9,8 @@ class MatterBulbOp:
     "brightness":["levelcontrol", "move-to-level", "100", "0", "0", "0", "1", "1"], "color": ["colorcontrol", "move-to-hue", "red", "0", "0", "0", "0", "1", "1"],
     "saturation": ["colorcontrol", "move-to-saturation", "100",  "0", "0", "0", "1", "1"],
     "StartMusic": ["onoff", "on", "1", "1"], "StopMusic": ["onoff", "off", "1", "1"]}
-    ColorTable= {"Red":"0","Orange":"30", "Yellow":"60","Green":"90", "Spring Green":"150", "Cyan":"180", "Azure":"210", "Blue":"240", "Violet":"270", "Magenta":"300", "Rose":"330"}          
+   #First Commit 9b9ffbd1336360f86cbfbe56a8900e335699dc44 ColorTable= {"Red":"0","Orange":"30", "Yellow":"60","Green":"90", "Spring Green":"150", "Cyan":"180", "Azure":"210", "Blue":"240", "Violet":"270", "Magenta":"300", "Rose":"330"}          
+    ColorTable= {"Red":"0","Orange":"15", "Yellow":"30", "Pear":"40", "Green":"85", "Turquoise":"120", "Cyan":"150", "Blue":"175", "Orchid":"200", "Pink":"235"}          
 
     '''
         Mainly useful for onoff cluster commands 

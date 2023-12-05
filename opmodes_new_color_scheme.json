@@ -1,0 +1,17 @@
+{
+	"operationmodes": [
+		{ "name":"Bulb On", "devops":[{"devicename":"bulb2", "cmdname":"On", "endpoint": "1"}]},
+		{ "name":"Bulb Off", "devops":[{"devicename":"bulb2", "cmdname":"Off", "endpoint": "1"}]},
+		{ "name":"Red", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Red", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Orange", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Orange", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Yellow", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Yellow", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Pear", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Pear", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Green", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Green", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Turquoise", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Turquoise", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Cyan", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Cyan", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Blue", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Blue", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Orchid", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Orchid", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"Pink", "devops":[{"devicename":"bulb2", "cmdname":"On", "color":"Pink", "saturation":"254", "brightness":"254", "endpoint": "1"}]},
+		{ "name":"White", "devops":[{"devicename":"bulb2", "cmdname":"On",  "saturation":"1", "brightness":"254", "endpoint": "1"}]}
+		]
+}
