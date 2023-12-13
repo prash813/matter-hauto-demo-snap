@@ -66,8 +66,8 @@ def PerformDeviceOps():
                 print(devicetype)
                 if devicetype in ["bridge","light", "plug", "light switch", "musicplayer"]:
                     listops=MatterBulbOp.PerformBulbOp(idx, nodeid, pathvar)
-                    if listlen > 1 and itemcount < listlen:
-                        listops.append(tmpstr)
+                    #if listlen > 1 and itemcount < listlen:
+                    istops.append(tmpstr)
                         
                     CHIPCmdList+=QueueTheOperations(listops)
                     Res["PerformdevOpsRes"] = "Success"
