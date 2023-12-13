@@ -60,6 +60,10 @@ def PairCall():
     elif pairparams[1][0] == "onnetwork":
         tmpdict=pairparams[1][1]
         pathvar+= tmpdict["PINCode"]
+    	
+    elif pairparams[1][0] == "ble-thread":
+        tmpdict=pairparams[1][1]
+        pathvar+=tmpdict["thnwopsDataset"] + " "  + tmpdict["PINCode"] + " " + tmpdict["Discriminator"]
     elif pairparams[1][0] == "code-thread":
         tmpdict=pairparams[1][1]
         print(tmpdict)
