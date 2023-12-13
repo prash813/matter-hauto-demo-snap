@@ -27,8 +27,9 @@ def getip():
 
 def QueueTheOperations(listops):
     cmdstr=""
+    cmddelay=os.environ.get('CMDDELAY')
     for i in listops:
-        cmdstr+=i + '; echo \"\\n\\n\\n\"; '
+        cmdstr+=i + '; echo \"\\n\\n\\n\"; ' + 'sleep ' + cmddelay + '; '
     return cmdstr
 @app.route('/Performdevops', methods=['GET'])
 def PerformDeviceOps():
