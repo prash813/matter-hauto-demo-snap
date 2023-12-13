@@ -6,7 +6,6 @@ from matterbulbop import MatterBulbOp
 import os
 import subprocess
 import json
-
 app = Flask(__name__)
 devicelist1 = None
 reqipaddr = None
@@ -24,19 +23,28 @@ def getip():
     if len(s) != 0:
         reqipaddr = s[0:len(s)-1]
     
-
+def QueueTheOperations(listops):
+    cmdstr=""
+    for i in listops:
+        cmdstr+=i + '; echo; echo; echo; '
+    return cmdstr
+'''
 def QueueTheOperations(listops):
     cmdstr=""
     cmddelay=os.environ.get('CMDDELAY')
     for i in listops:
-        cmdstr+=i + '; echo \"\\n\\n\\n\"; ' + 'sleep ' + cmddelay + '; '
+        cmdstr+=i + '; echo; echo; echo; ' + 'sleep ' + cmddelay + '; '
     return cmdstr
+'''    
 @app.route('/Performdevops', methods=['GET'])
 def PerformDeviceOps():
     global devicelist1
     global OperationModesDb
+    prevnodeid=0
     CHIPCmdList=""
     snapvar = os.environ.get('SNAP')
+    cmddelay=os.environ.get('CMDDELAY')
+    tmpstr= "sleep " + cmddelay 
     pathvar=snapvar + "/extra-bin/chip-tool "
     
     try:
@@ -44,9 +52,13 @@ def PerformDeviceOps():
         demoname=reqargs.get("demoname")
         deviceops=OpModes.Getdevops(OperationModesDb["operationmodes"], demoname)
         print(deviceops)
+        listlen=len(deviceops)
+        itemcount=0
         Res= {"PerformdevOpsRes": "Failure"}
         for idx in deviceops:
             nodeid = DeviceList.GetDeviceNodeID(devicelist1, idx["devicename"])
+            itemcount=itemcount+1            
+            
             if nodeid == '0':
                 nodeid=DeviceList.GetBridgeDeviceNodeID(DeviceDataBase, idx["devicename"])
             if nodeid != '0':    
@@ -54,6 +66,9 @@ def PerformDeviceOps():
                 print(devicetype)
                 if devicetype in ["bridge","light", "plug", "light switch", "musicplayer"]:
                     listops=MatterBulbOp.PerformBulbOp(idx, nodeid, pathvar)
+                    if listlen > 1 and itemcount < listlen:
+                        listops.append(tmpstr)
+                        
                     CHIPCmdList+=QueueTheOperations(listops)
                     Res["PerformdevOpsRes"] = "Success"
         print(CHIPCmdList)
