@@ -6,6 +6,7 @@ from matterbulbop import MatterBulbOp
 import os
 import subprocess
 import json
+import sys
 app = Flask(__name__)
 devicelist1 = None
 reqipaddr = None
@@ -67,11 +68,12 @@ def PerformDeviceOps():
                 if devicetype in ["bridge","light", "plug", "light switch", "musicplayer"]:
                     listops=MatterBulbOp.PerformBulbOp(idx, nodeid, pathvar)
                     #if listlen > 1 and itemcount < listlen:
-                    istops.append(tmpstr)
+                    listops.append(tmpstr)
                         
                     CHIPCmdList+=QueueTheOperations(listops)
                     Res["PerformdevOpsRes"] = "Success"
         print(CHIPCmdList)
+        sys.stdout.flush()
         subprocess.call([CHIPCmdList], stdin=None, stderr=None, shell=True, universal_newlines=True)
         return Res            
     except:
