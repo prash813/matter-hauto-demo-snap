@@ -52,6 +52,8 @@ def PerformDeviceOps():
         reqargs=request.args.to_dict()
         demoname=reqargs.get("demoname")
         deviceops=OpModes.Getdevops(OperationModesDb["operationmodes"], demoname)
+        if demoname == "AllOff" or demoname == "AllOn":
+            MatterBulbOp.ClearPrevColorNodes()
         print(deviceops)
         listlen=len(deviceops)
         itemcount=0

@@ -15,10 +15,23 @@ class MatterBulbOp:
     CorrectColorTable= {"Red":"0","Orange":"15", "Yellow":"30", "Pear":"40", "Green":"85", "Turquoise":"120", "Cyan":"150", "Blue":"175", "Orchid":"200", "Pink":"235"}
     ColorTable= {"Red":"0","Orange":"30", "Yellow":"60","Green":"90", "Spring Green":"150", "Cyan":"180", "Azure":"210", "Blue":"240", "Violet":"270", "Magenta":"300", "Rose":"330"}          
     ColorNames=["Red", "Orange", "Yellow", "Pear", "Green",  "Cyan",  "Blue", "Orchid", "Pink"]
-
+    PrevColrsForDiscoMode={}
     '''
         Mainly useful for onoff cluster commands 
     '''
+    def ClearPrevColorNodes():
+        MatterBulbOp.PrevColrsForDiscoMode.clear()
+
+    def CheckColor(nodeid, colorname):
+        print(nodeid, colorname)
+        sys.stdout.flush()
+        if str(nodeid) in MatterBulbOp.PrevColrsForDiscoMode.keys():
+            if MatterBulbOp.PrevColrsForDiscoMode[str(nodeid)] == colorname:
+                print("color on nodeid::", nodeid, "is same as Prev Color So change color")
+                return True
+        MatterBulbOp.PrevColrsForDiscoMode[str(nodeid)] = colorname
+        return False        
+        
     def PerformBulbOpX(cmddescr, nodeid, chiptool_cmd):
         cmdlist = []
         print(cmddescr)
@@ -30,8 +43,13 @@ class MatterBulbOp:
                 pathvar=chiptool_cmd
                 cmdparamlist=MatterBulbOp.CommandList["huesaturation"]
                 colorname=random.choice(MatterBulbOp.ColorNames)
+                count=0
                 print("random color returned is::", colorname, MatterBulbOp.CorrectColorTable[colorname])
-                print(cmdparamlist)
+                while MatterBulbOp.CheckColor(nodeid, colorname) == True and count < 5:
+                    colorname=random.choice(MatterBulbOp.ColorNames)
+                    print("random color returned is::", colorname, MatterBulbOp.CorrectColorTable[colorname])
+                    count=count+1
+                #print(cmdparamlist)
                 sys.stdout.flush()
                 pathvar+=cmdparamlist[0] + " " + cmdparamlist[1] + " " + MatterBulbOp.CorrectColorTable[colorname] + " " + cmdparamlist[3] + " " 
                 pathvar+=cmdparamlist[4] + " " + cmdparamlist[5] + " " + cmdparamlist[6] + " " + str(nodeid) + " " + str(cmddescr["endpoint"])
