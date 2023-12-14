@@ -66,7 +66,9 @@ def PerformDeviceOps():
                 devicetype = DeviceList.GetDeviceType(devicelist1, idx["devicename"])
                 print(devicetype)
                 if devicetype in ["bridge","light", "plug", "light switch", "musicplayer"]:
-                    listops=MatterBulbOp.PerformBulbOp(idx, nodeid, pathvar)
+                    listops=MatterBulbOp.PerformBulbOpX(idx, nodeid, pathvar)
+                    #listops=MatterBulbOp.PerformBulbOp(idx, nodeid, pathvar)
+
                     #if listlen > 1 and itemcount < listlen:
                     listops.append(tmpstr)
                         
@@ -106,7 +108,7 @@ def hello_world():
     OperationModesDb=OpModes.GetData(opmodefile)
     demolist = OpModes.GetDemoList(OperationModesDb["operationmodes"])
     print(demolist)
-    
+    sys.stdout.flush() 
     isdebug=os.environ.get('DEBUG')
     if isdebug == "true": #This is original woking code as on Aug17 2023 	
         return render_template('/devicedemo.html', ipaddr=reqipaddr, devicedemolist=demolist)
